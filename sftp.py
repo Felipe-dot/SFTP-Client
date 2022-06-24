@@ -26,43 +26,51 @@ while True:
                 filepath = "/home/administrador/sftp/teste.txt"
                 localpath = "/home/felipe/Documentos/sftp/teste.txt"
                 sftp.get(filepath,localpath)
+                print("Baixado atualizado")
             elif cmd == "put":
                 # Upload
                 print("Atualizando arquivo...")
                 filepath = "/home/administrador/sftp/teste.txt"
                 localpath = "/home/felipe/Documentos/sftp/testando.txt"
                 sftp.put(localpath,filepath)
+                print("Arquivo atualizado")
             elif cmd == "rename":
                 # Mundando o nome do arquivo
                 print("Mudando o nome do arquivo...")
                 oldPath = "/home/administrador/sftp/meuNome.txt"
                 newPath = "/home/administrador/sftp/meuNovoNome.txt"
                 sftp.rename(oldPath,newPath)
+                print("Nome do arquivo mudado")
             elif cmd == "chmod":
                 # Mudando o permissionamento do arquivo
                 print("Mudando o permissionamento do arquivo!")
                 path = "/home/administrador/sftp/teste.sh"
                 sftp.chmod(path,0o111)
+                print("Permissionamento mudado")
             elif cmd == "chown":
                 # Mudando o proprietário e o grupo do arquivo
                 print("Mudando o proprietário e o grupo do arquivo!")
                 path = "/home/administrador/sftp/teste.sh"
                 sftp.chown(path,0o1000,0o1000)
+                print("Proprietário e grupo mudado")
             elif cmd == "stat":
                 # Obtendo  o status do arquivo
                 print("Obtendo status do arquivo...")
                 path = "/home/administrador/sftp/teste.sh"
-                sftp.stat(path)
+                status = sftp.stat(path)
+                print(status)
             elif cmd == "rmdir":
                 # Remover um diretório
                 print("Removendo diretório...")
                 path = "/home/administrador/sftp/removendoDiretorio"
                 sftp.rmdir(path)
+                print("Diretório removido")
             elif cmd == "chdir":
                 # Mudando o caminho do diretório atual
                 print("Mudando o caminho do diretório atual...")
                 path = "/home/administrador/sftp/mudandoDiretorio"
                 sftp.chdir(path)
+                print("Caminho alterado")
             elif cmd == "mkdir":
                 # Criando um diretório
                 print("Diretório sendo criado")
@@ -72,19 +80,22 @@ while True:
                 print("Pegando o caminho do diretorio atual...")
                 path = "/home/administrador/sftp/"
                 sftp.chdir(path)
-                sftp.getcwd()
+                pwd = sftp.getcwd()
+                print(pwd)
             elif cmd == "ls":
                 # Retorna a lista dos arquivos do diretório atual
                 print("Retorna a lista de arquivos do diretorio atual")
                 path = "/home/administrador/sftp/"
                 sftp.chdir(path)
-                sftp.listdir()
+                ls = sftp.listdir()
+                print(ls)
             elif cmd == "prename":
                 print("Renomeando o diretório")
                 # Renomeando um diretório
                 oldPath = "/home/administrador/sftp/diretorio1"
                 newPath = "/home/administrador/sftp/diretorio2"
                 sftp.posix_rename(oldPath,newPath)
+                print("Diretório renomeado")
             elif (cmd == "?" or cmd == "help"):
                 print("Comandos disponivéis")
                 print("get \t Baixar o arquivo")
