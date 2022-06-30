@@ -50,7 +50,7 @@ def chmod(sftp):
     path = input("Digite o caminho do arquivo no servidor:")
     permissionCode = input("Digite o código  binário de permissionamento pro arquivo:")
     try:
-        sftp.chmod(path,oct(int(permissionCode)))
+        sftp.chmod(path,int(permissionCode))
         print("Permissionamento mudado")
     except:
         print("Erro ao mudar o permissionamento")
@@ -61,7 +61,7 @@ def chown(sftp):
      uid = input("Digite o id do usuário no servidor:")  
      gid = input("Digite o id do grupo no servidor:")
      try:
-        sftp.chown(path,oct(int(uid)),oct(int(gid)))
+        sftp.chown(path,int(uid),int(gid))
         print("Proprietário e grupo mudado")
      except:
         print("Erro ao mudar o proprietário do arquivo")
