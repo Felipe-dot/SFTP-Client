@@ -57,17 +57,6 @@ try:
         except:
             print("Erro ao mudar o permissionamento")
 
-    def chown(sftp):
-        print("Mudando o proprietário e o grupo do arquivo!")
-        path = input("Digite o caminho do arquivo no servidor:")
-        uid = input("Digite o id do usuário no servidor:")  
-        gid = input("Digite o id do grupo no servidor:")
-        try:
-            sftp.chown(path,int(uid),int(gid))
-            print("Proprietário e grupo mudado")
-        except:
-            print("Erro ao mudar o proprietário do arquivo")
-
     def stat(sftp):
         print("Obtendo status do arquivo...")
         path = input("Digite o caminho do arquivo no servidor:")
@@ -111,7 +100,10 @@ try:
         print("Pegando o caminho do diretorio atual...")
         try:
             pwd = sftp.getcwd()
-            print("Diretório atual:"+pwd)
+            if(pwd == None):
+                print("Diretório atual: /")
+            else:
+                print("Diretório atual:"+ pwd)
         except:
             print("Ocorreu um erro ao pegar o caminho atual")
 
@@ -140,7 +132,6 @@ try:
         print("put \t Atualizar o arquivo")
         print("rename \t Mudar o nome do arquivo")
         print("chmod \t Mudar o permissionamento do arquivo")
-        print("chown \t Mudar o proprietário/grupo do arquivo")
         print("stat \t Obtendo status do arquivo")
         print("rmdir \t Removendo um diretório")
         print("mkdir \t Criando um diretório")
@@ -158,7 +149,6 @@ try:
         "put": put, 
         "rename": rename,
         "chmod": chmod,
-        "chown":chown,
         "stat":stat,
         "rmdir": rmdir,
         "mkdir": mkdir,
